@@ -42,8 +42,8 @@
   --color-accent-lavender: var(--accent-lavender);
   --color-accent-pink: var(--accent-pink);
 
-  --font-sans: var(--font-body);
-  --font-heading: var(--font-display);
+  --font-sans: "Nunito", Arial, Helvetica, sans-serif;
+  --font-heading: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
@@ -58,13 +58,13 @@ html {
 body {
   background-color: var(--bg-warm);
   color: var(--text-primary);
-  font-family: var(--font-body, "Nunito", Arial, Helvetica, sans-serif);
+  font-family: "Nunito", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display, "Bricolage Grotesque", Arial, Helvetica, sans-serif);
+  font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
 }
 
 /* Subtle noise / grain texture overlay */
