@@ -78,6 +78,7 @@ export default function ResourcesPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search tips…"
+              aria-label="Search tips"
               className="w-full rounded-xl border border-ink/10 bg-white/80 py-3 pr-4 pl-11 text-ink shadow-sm outline-none backdrop-blur transition-all focus:border-brand focus:ring-2 focus:ring-brand/30"
             />
           </div>
@@ -141,7 +142,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* ── TIP SECTIONS ─────────────────────────────────────────────── */}
-      <main className="mx-auto max-w-6xl px-6 pt-14 pb-28">
+      <div className="mx-auto max-w-6xl px-6 pt-14 pb-28">
         {filtered.length === 0 && (
           <div className="py-24 text-center">
             <p className="text-6xl">🔍</p>
@@ -169,7 +170,7 @@ export default function ResourcesPage() {
             <CategorySection key={cat.slug} category={cat} />
           ))}
         </div>
-      </main>
+      </div>
     </>
   );
 }

@@ -34,7 +34,7 @@ export default function Footer() {
               <span className="text-white">Open</span>
               <span className="text-brand">ADHD</span>
             </Link>
-            <p className="text-sm leading-relaxed text-white/55">
+            <p className="text-sm leading-relaxed text-white/75">
               Free, open-source resources to help you understand, manage, and
               thrive with ADHD. Built by the community, for the community.
             </p>
@@ -43,7 +43,7 @@ export default function Footer() {
                 href="https://github.com/carterlasalle/OpenADHD"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/50 transition-all hover:border-brand hover:text-brand"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/75 transition-all hover:border-brand hover:text-brand"
                 aria-label="GitHub"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-white/30">
+            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-white/60">
               Navigate
             </h3>
             <ul className="space-y-3">
@@ -63,7 +63,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-white/55 transition-colors hover:text-brand"
+                    className="text-sm text-white/75 transition-colors hover:text-brand"
                   >
                     {label}
                   </Link>
@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Crisis Resources */}
           <div>
-            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-brand/70">
+            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-brand">
               Crisis Resources
             </h3>
             <ul className="space-y-4">
@@ -88,7 +88,7 @@ export default function Footer() {
                   >
                     {label}
                   </a>
-                  <p className="text-xs text-white/35">{note}</p>
+                  <p className="text-xs text-white/60">{note}</p>
                 </li>
               ))}
             </ul>
@@ -96,12 +96,12 @@ export default function Footer() {
 
           {/* Open Source */}
           <div>
-            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-white/30">
+            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-white/60">
               Open Source
             </h3>
-            <p className="text-sm leading-relaxed text-white/55">
+            <p className="text-sm leading-relaxed text-white/75">
               Licensed under{" "}
-              <span className="font-semibold text-white/80">GPL-3.0</span>.
+              <span className="font-semibold text-white">GPL-3.0</span>.
               Everyone can contribute.
             </p>
             <a
@@ -120,8 +120,8 @@ export default function Footer() {
 
         {/* Disclaimer */}
         <div className="mt-14 rounded-xl border border-white/5 bg-white/3 px-5 py-4">
-          <p className="text-center text-xs leading-relaxed text-white/40">
-            <span className="font-semibold text-amber/60">Disclaimer:</span>{" "}
+          <p className="text-center text-xs leading-relaxed text-white/70">
+            <span className="font-semibold text-amber">Disclaimer:</span>{" "}
             OpenADHD provides educational resources only. This is not medical
             advice. Always consult healthcare professionals for diagnosis and
             treatment.
@@ -129,7 +129,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 text-xs text-white/30 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 text-xs text-white/60 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} OpenADHD. Open source, free forever.</p>
           <p>Made with 🧠 by the ADHD community</p>
         </div>

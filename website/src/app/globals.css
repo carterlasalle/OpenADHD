@@ -16,7 +16,7 @@
 
   --ink:         #111111;
   --ink-muted:   #555555;
-  --ink-faint:   #999999;
+  --ink-faint:   #717171;
   --ink-on-dark: #F5F5F3;
 
   --brand:       #FF4747;
@@ -254,4 +254,32 @@ body::after {
   border-radius: 50%;
   background: var(--brand);
   display: inline-block;
+}
+
+/* ── 10. Reduced Motion ─────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .sr-up, .sr-down, .sr-left, .sr-right, .sr-fade {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .anim-float, .anim-spin-slow, .marquee-track {
+    animation: none !important;
+  }
+
+  .gradient-text {
+    animation: none !important;
+  }
+
+  .card:hover, .card-dark:hover {
+    transform: none !important;
+  }
 }

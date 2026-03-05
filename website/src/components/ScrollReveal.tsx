@@ -25,6 +25,15 @@ export default function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
+    // Respect user preference for reduced motion
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) {
+      el.classList.add("sr-visible");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

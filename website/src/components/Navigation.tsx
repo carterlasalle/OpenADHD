@@ -35,7 +35,7 @@ export default function Navigation() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <nav aria-label="Main navigation" className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         {/* Brand */}
         <Link
           href="/"
@@ -127,6 +127,9 @@ export default function Navigation() {
 
       {/* Mobile panel */}
       <div
+        role="dialog"
+        aria-label="Mobile navigation menu"
+        aria-modal="true"
         className={`fixed top-0 right-0 z-50 flex h-full w-[280px] flex-col bg-surface shadow-2xl transition-transform duration-300 ease-[cubic-bezier(.22,1,.36,1)] md:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}

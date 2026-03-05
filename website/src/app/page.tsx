@@ -376,7 +376,7 @@ export default function Home() {
                   <p className="gradient-text mt-4 text-4xl font-extrabold md:text-5xl">
                     {item.stat}
                   </p>
-                  <p className="mt-2 text-sm font-medium text-white/50">
+                  <p className="mt-2 text-sm font-medium text-white/75">
                     {item.label}
                   </p>
                 </div>
@@ -386,7 +386,7 @@ export default function Home() {
 
           <ScrollReveal direction="up" delay={300}>
             <div className="mx-auto mt-14 max-w-2xl">
-              <p className="text-lg leading-relaxed text-white/60">
+              <p className="text-lg leading-relaxed text-white/75">
                 If you think you might have ADHD, reaching out for help is one of
                 the most important things you can do. A diagnosis can be
                 life-changing&nbsp;— and you deserve the support that comes with
@@ -418,7 +418,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={150}>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/60">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
               OpenADHD is fully open source under the{" "}
               <strong className="text-white">GPL-3.0 license</strong>. Every
               tip, every resource, every line of code is free for everyone. ADHD
@@ -460,7 +460,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={450}>
-            <p className="mt-10 text-sm text-white/40">
+            <p className="mt-10 text-sm text-white/70">
               Have an ADHD tip that changed your life? We&apos;d love to add it.
               Open a pull request or issue on GitHub!
             </p>
