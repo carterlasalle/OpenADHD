@@ -43,7 +43,7 @@
   --color-accent-pink: var(--accent-pink);
 
   --font-sans: var(--font-body);
-  --font-display: var(--font-display);
+  --font-heading: var(--font-display);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
