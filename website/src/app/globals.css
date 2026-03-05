@@ -1,254 +1,257 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   OpenADHD Design System
-   A warm, inviting, ADHD-friendly design language built for clarity,
-   comfort, and visual chunking.
+   OpenADHD · "Neuro-Pop" Design System
+   Bold, warm, kinetic — celebrates neurodivergence with vivid color,
+   confident typography, and ADHD-friendly structure.
    ========================================================================== */
 
-/* ---------------------------------------------------------------------------
-   1. Design Tokens — CSS Custom Properties
-   --------------------------------------------------------------------------- */
+/* ── 1. Design Tokens ───────────────────────────────────────────────────── */
 
 :root {
-  /* Backgrounds */
-  --bg-warm: #FDF6EE;
-  --bg-dark: #1A1B3A;
+  --surface:     #FAFAF8;
+  --surface-alt: #F0F0EC;
+  --surface-inv: #111111;
+  --surface-inv2:#1A1A1A;
 
-  /* Typography */
-  --text-primary: #2D2B3D;
-  --text-secondary: #6B6880;
+  --ink:         #111111;
+  --ink-muted:   #555555;
+  --ink-faint:   #999999;
+  --ink-on-dark: #F5F5F3;
 
-  /* Accent palette */
-  --accent-coral: #FF6B4A;
-  --accent-amber: #FFAA3B;
-  --accent-teal: #1DBAA0;
-  --accent-lavender: #9B8FED;
-  --accent-pink: #FF4D8D;
+  --brand:       #FF4747;
+  --brand-dark:  #CC2B2B;
+  --teal:        #00CDB8;
+  --teal-dark:   #009E8F;
+  --amber:       #FFBE0B;
+  --purple:      #7B2FF7;
+  --purple-soft: #A78BFA;
+
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-full: 9999px;
 }
 
-/* ---------------------------------------------------------------------------
-   2. Tailwind v4 Theme — expose tokens as utilities
-   --------------------------------------------------------------------------- */
+/* ── 2. Tailwind v4 Theme ───────────────────────────────────────────────── */
 
 @theme inline {
-  --color-bg-warm: var(--bg-warm);
-  --color-bg-dark: var(--bg-dark);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-accent-coral: var(--accent-coral);
-  --color-accent-amber: var(--accent-amber);
-  --color-accent-teal: var(--accent-teal);
-  --color-accent-lavender: var(--accent-lavender);
-  --color-accent-pink: var(--accent-pink);
+  --color-surface:     var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-inv: var(--surface-inv);
+  --color-surface-inv2:var(--surface-inv2);
+  --color-ink:         var(--ink);
+  --color-ink-muted:   var(--ink-muted);
+  --color-ink-faint:   var(--ink-faint);
+  --color-ink-on-dark: var(--ink-on-dark);
+  --color-brand:       var(--brand);
+  --color-brand-dark:  var(--brand-dark);
+  --color-teal:        var(--teal);
+  --color-teal-dark:   var(--teal-dark);
+  --color-amber:       var(--amber);
+  --color-purple:      var(--purple);
+  --color-purple-soft: var(--purple-soft);
 
-  --font-sans: "Nunito", Arial, Helvetica, sans-serif;
-  --font-heading: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans:    "Lexend", system-ui, -apple-system, sans-serif;
+  --font-display: "Syne", "Lexend", system-ui, sans-serif;
 }
 
-/* ---------------------------------------------------------------------------
-   3. Global Base Styles
-   --------------------------------------------------------------------------- */
+/* ── 3. Base Styles ─────────────────────────────────────────────────────── */
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background-color: var(--bg-warm);
-  color: var(--text-primary);
-  font-family: "Nunito", Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Lexend", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
+  font-family: "Syne", "Lexend", system-ui, sans-serif;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-/* Subtle noise / grain texture overlay */
+/* Grain texture — very subtle */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ---------------------------------------------------------------------------
-   4. Scrollbar
-   --------------------------------------------------------------------------- */
+/* ── 4. Scrollbar ───────────────────────────────────────────────────────── */
 
-/* Webkit / Blink */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--brand); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+* { scrollbar-width: thin; scrollbar-color: var(--brand) transparent; }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+/* ── 5. Selection & Focus ───────────────────────────────────────────────── */
 
-::-webkit-scrollbar-thumb {
-  background: var(--accent-coral);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-pink);
-}
-
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-coral) transparent;
-}
-
-/* ---------------------------------------------------------------------------
-   5. Selection
-   --------------------------------------------------------------------------- */
-
-::selection {
-  background-color: var(--accent-coral);
-  color: #ffffff;
-}
-
-/* ---------------------------------------------------------------------------
-   6. Focus — smooth, accessible focus ring
-   --------------------------------------------------------------------------- */
+::selection { background: var(--brand); color: #fff; }
 
 :focus-visible {
-  outline: 2px solid var(--accent-coral);
+  outline: 2.5px solid var(--brand);
   outline-offset: 3px;
-  border-radius: 4px;
-  transition: outline-offset 0.15s ease;
+  border-radius: var(--radius-sm);
 }
 
-/* ---------------------------------------------------------------------------
-   7. Animation Keyframes
-   --------------------------------------------------------------------------- */
+/* ── 6. Keyframes ───────────────────────────────────────────────────────── */
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-32px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(32px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
-
-@keyframes pulse-gentle {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.04); }
-}
-
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-12px) rotate(2deg); }
 }
-
-@keyframes gradient-shift {
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes gradient-x {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-/* ---------------------------------------------------------------------------
-   8. Utility Classes — Animations
-   --------------------------------------------------------------------------- */
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out both;
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out both;
-}
+/* ── 7. Animation Utilities ─────────────────────────────────────────────── */
 
-.animate-slide-in-left {
-  animation: slideInLeft 0.6s ease-out both;
-}
+.anim-fade-up  { animation: fadeInUp 0.65s cubic-bezier(.22,1,.36,1) both; }
+.anim-fade     { animation: fadeIn 0.5s ease both; }
+.anim-slide-l  { animation: slideInLeft 0.6s cubic-bezier(.22,1,.36,1) both; }
+.anim-slide-r  { animation: slideInRight 0.6s cubic-bezier(.22,1,.36,1) both; }
+.anim-float    { animation: float 4s ease-in-out infinite; }
+.anim-spin-slow{ animation: spin-slow 20s linear infinite; }
 
-.animate-slide-in-right {
-  animation: slideInRight 0.6s ease-out both;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Stagger delays for sequenced entrance animations */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
 .delay-600 { animation-delay: 600ms; }
-.delay-700 { animation-delay: 700ms; }
 
-/* ---------------------------------------------------------------------------
-   9. Utility Classes — Visual Effects
-   --------------------------------------------------------------------------- */
+/* ── 8. ScrollReveal ────────────────────────────────────────────────────── */
 
-/* Gradient text using the accent palette */
+.sr-base {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+  will-change: opacity, transform;
+}
+.sr-up    { opacity: 0; transform: translateY(36px); }
+.sr-down  { opacity: 0; transform: translateY(-36px); }
+.sr-left  { opacity: 0; transform: translateX(-40px); }
+.sr-right { opacity: 0; transform: translateX(40px); }
+.sr-fade  { opacity: 0; }
+
+.sr-visible { opacity: 1 !important; transform: none !important; }
+
+/* ── 9. Effect Utilities ────────────────────────────────────────────────── */
+
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-coral), var(--accent-amber), var(--accent-pink));
+  background: linear-gradient(135deg, var(--brand) 0%, var(--amber) 50%, var(--teal) 100%);
   background-size: 200% 200%;
-  animation: gradient-shift 4s ease infinite;
+  animation: gradient-x 5s ease infinite;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Glassmorphism card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+.card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.03);
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.35s cubic-bezier(.22,1,.36,1),
+              border-color 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.10);
 }
 
-/* Hover lift — adds elevation on hover */
-.hover-lift {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.card-dark {
+  background: var(--surface-inv2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.35s cubic-bezier(.22,1,.36,1);
 }
-
-.hover-lift:hover {
+.card-dark:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Marquee for scrolling text */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* Tag pills */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* Section divider */
+.section-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+  display: inline-block;
 }
