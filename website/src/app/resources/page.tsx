@@ -121,7 +121,11 @@ export default function ResourcesPage() {
 
           {/* filter info */}
           {hasFilters && (
-            <div className="mt-3 flex items-center gap-3 text-sm text-ink-muted">
+            <div
+              className="mt-3 flex items-center gap-3 text-sm text-ink-muted"
+              role="status"
+              aria-live="polite"
+            >
               <span>
                 Showing{" "}
                 <strong className="text-ink">{matchCount}</strong> tip

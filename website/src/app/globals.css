@@ -62,6 +62,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* WCAG 2.4.11 Focus Not Obscured: prevent fixed header from covering focused elements */
+  scroll-padding-top: 80px;
 }
 
 body {

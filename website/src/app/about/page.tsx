@@ -547,7 +547,7 @@ export default function AboutPage() {
                 href="https://github.com/carterlasalle/OpenADHD"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-14 items-center gap-2 rounded-xl border-2 border-ink-on-dark/30 px-8 text-lg font-bold text-ink-on-dark transition-colors hover:border-ink-on-dark hover:bg-white/10"
+                className="inline-flex h-14 items-center gap-2 rounded-xl border-2 border-ink-on-dark/50 px-8 text-lg font-bold text-ink-on-dark transition-colors hover:border-ink-on-dark hover:bg-white/10"
               >
                 ⭐ Star us on GitHub
               </a>

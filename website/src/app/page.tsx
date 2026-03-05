@@ -346,7 +346,7 @@ export default function Home() {
             <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
               You&apos;re <span className="gradient-text">Not Alone</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white/60 md:text-lg">
+            <p className="mx-auto mt-4 max-w-xl text-white/75 md:text-lg">
               ADHD is far more common than most people realise&nbsp;— and
               it&apos;s one of the most treatable conditions out there.
             </p>
@@ -452,7 +452,7 @@ export default function Home() {
                 href="https://github.com/carterlasalle/OpenADHD"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-14 items-center gap-2 rounded-xl border-2 border-white/30 px-8 text-lg font-bold text-white transition-colors hover:border-white hover:bg-white/10"
+                className="inline-flex h-14 items-center gap-2 rounded-xl border-2 border-white/50 px-8 text-lg font-bold text-white transition-colors hover:border-white hover:bg-white/10"
               >
                 ⭐ Star on GitHub
               </a>

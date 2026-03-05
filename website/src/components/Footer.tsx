@@ -17,9 +17,9 @@ const helplines = [
 
 export default function Footer() {
   return (
-    <footer className="bg-surface-inv text-ink-on-dark">
+    <footer className="bg-surface-inv text-ink-on-dark" role="contentinfo">
       {/* Top bar - decorative */}
-      <div className="flex h-1">
+      <div className="flex h-1" aria-hidden="true">
         <div className="flex-1 bg-brand" />
         <div className="flex-1 bg-teal" />
         <div className="flex-1 bg-amber" />
@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <div>
+          <nav aria-label="Footer navigation">
             <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-white/60">
               Navigate
             </h3>
@@ -70,10 +70,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Crisis Resources */}
-          <div>
+          <section aria-label="Crisis resources">
             <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-brand">
               Crisis Resources
             </h3>
@@ -92,7 +92,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </section>
 
           {/* Open Source */}
           <div>
