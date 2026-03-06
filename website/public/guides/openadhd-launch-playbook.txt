@@ -1,0 +1,44 @@
+OpenADHD From Zero to Launch Playbook
+Nonprofit-style informational hub implementation manual
+
+Mission and Product Promise
+---------------------------
+OpenADHD exists to make high-quality ADHD help free, practical, and easy to use. The promise is action-first support: users should be able to reach a useful next step in under one minute.
+The core product model is one-page understanding, one tool for today, one weekly plan, and one deeper guide. This model is designed for real executive-function constraints, not idealized attention spans.
+Every decision should be evaluated through five filters: free-first access, low-friction UX, evidence-aware language, nonjudgmental tone, and personalized pathways.
+
+Information Architecture
+------------------------
+Top-level navigation should prioritize utility over brand storytelling. Required sections: Start Here, Tools, Library, Diagnosis and Care, For Students, For Parents and Partners, and About plus Contribute.
+Library organization must mirror moments and pain points rather than academic categories. Users search for immediate problems: cannot start, behind in class, time disappeared, conflict at home, medication uncertainty.
+Compatibility routes should preserve old links (for example, /resources to /library and /diagnosis to /care) to prevent resource rot and external-link breakage.
+
+MVP Build Sequence
+------------------
+Phase 1 (2-4 weeks): Start Here chooser, 10 high-impact guides, 10 printable templates, Task Breaker and Routine Builder tools, and core care navigation path pages.
+Phase 2: Add Study Sprint, Script Library, Student Portal, and improved diagnosis/cost/medication guidance. Introduce save/favorites and lightweight progress tracking.
+Phase 3: Add structured community layer, local resource map starter, volunteer program, translation workflow, and partnership playbooks.
+Critical constraint: do not scale content volume before delivery quality is stable on the top 20 user journeys.
+
+Content Operating Rules
+-----------------------
+Each page begins with: what this is, who it is for, and what to do first. This prevents orientation fatigue.
+Each deep guide includes TL;DR, minimum viable version, if-you-have-energy mode, and crisis mode. This supports variable capacity across the same user.
+Use checklists, section caps, and progress visibility. Avoid walls of text and avoid content that requires uninterrupted long-focus sessions.
+High-stakes pages must include educational-only framing and clear crisis routing (988 in the U.S.).
+
+Measurement Framework
+---------------------
+Primary metrics: tool completions, template downloads, return visits, time-to-first-helpful-action, and one-click helpfulness rating.
+Avoid vanity-only metrics such as pageviews without behavioral outcomes. Page traffic is not equivalent to support impact.
+Define healthy latency targets: users should complete first useful action within two minutes from landing.
+Review metrics weekly and use evidence of user friction to prioritize product changes.
+
+Governance and Public-Good Trust
+--------------------------------
+Maintain a transparency page covering content creation, review process, funding disclosures, partnerships, and contribution pathways.
+Adopt school-friendly licensing intent for templates so educators and support groups can adapt resources without legal friction.
+Use an editorial policy that rejects miracle-cure language, unvetted influencer claims, and unsupported medical certainty.
+Trust grows from consistency, clarity, and transparent limits as much as from content volume.
+
+OpenADHD educational resource. Not medical advice.

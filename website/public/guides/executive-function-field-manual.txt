@@ -1,0 +1,40 @@
+Executive Function Field Manual
+Practical intervention reference for daily execution
+
+Executive Dysfunction Pattern Map
+---------------------------------
+Common patterns include startup paralysis, sequence loss, context-switch collapse, and completion drift. These are regulation and orchestration failures, not evidence of low effort.
+Intervention begins by reducing decision load. Replace vague goals with physical first actions and make starts observable and time-bound.
+Visible external systems are required: one task board, one calendar, one recovery checklist. Tool sprawl creates hidden cognitive tax.
+
+Task Initiation Protocol
+------------------------
+Use a strict startup script: define done in one sentence, gather materials for step one only, set ten-minute timer, start without renegotiating scope.
+If no start after two attempts, add body doubling before trying harder solo. Escalate support early, not after burnout.
+Track starts completed instead of only final completions. Start consistency is the leading indicator for long-term execution reliability.
+
+Time Blindness Countermeasures
+------------------------------
+Always estimate then buffer. Include setup, transition, and shutdown time explicitly. Most planning errors come from missing hidden segments.
+Use visual timers and checkpoint alarms. Time cues must be external and redundant.
+Calibrate weekly: compare estimated vs actual durations and adjust default multipliers by task type.
+
+Routine Engineering
+-------------------
+Every routine needs three tiers: minimum, normal, and bad-day. Without fallback tiers, consistency collapses under stress.
+Attach routines to stable anchors (after coffee, after shower, before laptop close). Cue-based sequencing outperforms motivation-based plans.
+Weekly routine review should remove failing steps before adding new ones.
+
+Repair After Misses
+-------------------
+Misses are expected in ADHD support systems. Reliability comes from rapid repair, not perfect prevention.
+Repair script: acknowledge impact, state immediate corrective action with timestamp, state one prevention change.
+Use this script across school, work, and relationships to preserve trust while improving systems.
+
+Sustainability Guardrails
+-------------------------
+Do not run panic mode as default productivity. Emergency cadence should be temporary and explicitly bounded.
+Protect sleep, nutrition, and recovery blocks as execution infrastructure rather than optional wellness extras.
+When overload persists, reduce commitments before adding optimization complexity.
+
+OpenADHD educational resource. Not medical advice.
