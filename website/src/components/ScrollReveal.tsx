@@ -16,38 +16,35 @@ export default function ScrollReveal({
   className = "",
   delay = 0,
   direction = "up",
-  duration = 700,
+  duration = 640,
   once = true,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const node = ref.current;
+    if (!node) return;
 
-    // Respect user preference for reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) {
-      el.classList.add("sr-visible");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      node.classList.add("sr-visible");
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.transitionDelay = `${delay}ms`;
-          el.classList.add("sr-visible");
-          if (once) observer.unobserve(el);
+          node.style.transitionDelay = `${delay}ms`;
+          node.classList.add("sr-visible");
+          if (once) observer.unobserve(node);
         } else if (!once) {
-          el.classList.remove("sr-visible");
+          node.classList.remove("sr-visible");
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.14, rootMargin: "0px 0px -40px 0px" },
     );
 
-    observer.observe(el);
+    observer.observe(node);
     return () => observer.disconnect();
   }, [delay, once]);
 
@@ -65,7 +62,7 @@ export default function ScrollReveal({
   return (
     <div
       ref={ref}
-      className={`sr-base ${directionClass} ${className}`}
+      className={`sr-base ${directionClass} ${className}`.trim()}
       style={{ transitionDuration: `${duration}ms` }}
     >
       {children}

@@ -1,229 +1,430 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/resources", label: "Resources" },
-  { href: "/diagnosis", label: "Diagnosis" },
+  { href: "/start-here", label: "Start Here" },
   { href: "/tools", label: "Tools" },
-  { href: "/community", label: "Community" },
+  { href: "/library", label: "Guides" },
+  { href: "/care", label: "Care" },
+  { href: "/students", label: "Students" },
+  { href: "/parents-partners", label: "Support Someone" },
   { href: "/about", label: "About" },
 ] as const;
 
 export default function Navigation() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close on Escape key (WCAG 2.1.1)
   useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
         toggleRef.current?.focus();
       }
     };
+
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, [isOpen]);
 
-  // Trap focus inside mobile menu when open (WCAG focus management for modal dialogs)
   useEffect(() => {
-    if (!open || !menuRef.current) return;
-    const menu = menuRef.current;
-    const focusable = menu.querySelectorAll<HTMLElement>(
-      'a[href], button, [tabindex]:not([tabindex="-1"])'
+    if (!isOpen || !drawerRef.current) return;
+
+    const drawer = drawerRef.current;
+    const focusables = drawer.querySelectorAll<HTMLElement>(
+      'a[href], button, [tabindex]:not([tabindex="-1"])',
     );
-    if (focusable.length === 0) return;
 
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
+    if (focusables.length === 0) return;
 
-    const trapFocus = (e: KeyboardEvent) => {
-      if (e.key !== "Tab") return;
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    first.focus();
+
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      }
+      if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
-    // Focus the close button when menu opens
-    const closeBtn = menu.querySelector<HTMLElement>("button");
-    closeBtn?.focus();
-
     document.addEventListener("keydown", trapFocus);
     return () => document.removeEventListener("keydown", trapFocus);
-  }, [open]);
+  }, [isOpen]);
 
-  const active = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-surface/90 shadow-[0_1px_12px_rgba(0,0,0,0.06)] backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
-    >
-      <nav aria-label="Main navigation" className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        {/* Brand */}
-        <Link
-          href="/"
-          onClick={() => setOpen(false)}
-          className="group relative flex items-baseline gap-0.5 text-[1.35rem] font-bold tracking-tight"
+    <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`}>
+      <div className="site-alert" role="note">
+        <span style={{ color: "var(--danger)", marginRight: "0.35rem" }}>&#9888;</span>
+        If you are in immediate crisis: call or text{" "}
+        <a
+          href="https://988lifeline.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "var(--danger)",
+            fontWeight: 800,
+            textDecoration: "underline",
+            textUnderlineOffset: "2px",
+          }}
         >
-          <span className="text-ink transition-colors group-hover:text-brand">
-            Open
-          </span>
-          <span className="text-brand">ADHD</span>
-          <span className="absolute -bottom-1 left-0 h-[3px] w-0 rounded-full bg-brand transition-all duration-300 group-hover:w-full" />
+          988
+        </a>{" "}
+        in the U.S.
+      </div>
+      <nav className="nav-shell" aria-label="Primary">
+        <Link
+          className="brand-lockup"
+          href="/"
+          onClick={() => setIsOpen(false)}
+          aria-label="OpenADHD home"
+        >
+          <span className="brand-open">Open</span>
+          <strong className="brand-adhd">ADHD</strong>
         </Link>
 
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
+        <ul className="nav-links" aria-label="Primary links">
+          {navLinks.map((link) => (
+            <li key={link.href}>
               <Link
-                href={href}
-                className={`relative px-3.5 py-2 text-[0.9rem] font-medium transition-colors duration-200 rounded-lg ${
-                  active(href)
-                    ? "text-brand"
-                    : "text-ink-muted hover:text-ink"
-                }`}
+                href={link.href}
+                className={`nav-link ${isActive(link.href) ? "is-active" : ""}`}
+                aria-current={isActive(link.href) ? "page" : undefined}
               >
-                {label}
-                {active(href) && (
-                  <span className="absolute bottom-0 left-3 right-3 h-[2.5px] rounded-full bg-brand" />
+                {link.label}
+                {isActive(link.href) && (
+                  <span className="nav-link-dot" aria-hidden="true" />
                 )}
               </Link>
             </li>
           ))}
         </ul>
 
-        {/* GitHub + mobile toggle */}
-        <div className="flex items-center gap-3">
-          <a
-            href="https://github.com/carterlasalle/OpenADHD"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full border border-ink/10 px-4 py-2 text-xs font-semibold text-ink-muted transition-all hover:border-brand hover:text-brand md:inline-flex"
-          >
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fillRule="evenodd"
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.338c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Star
-          </a>
-
+        <div className="nav-actions">
+          <Link className="btn btn-bad-day" href="/tools/bad-day-mode">
+            <span aria-hidden="true" style={{ fontSize: "0.9em" }}>&#9888;</span>
+            Bad Day Mode
+          </Link>
           <button
-            type="button"
             ref={toggleRef}
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            className="relative flex h-10 w-10 items-center justify-center rounded-xl text-ink-muted transition-colors hover:bg-brand/5 hover:text-ink md:hidden"
+            type="button"
+            aria-expanded={isOpen}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            className="nav-toggle"
+            onClick={() => setIsOpen((prev) => !prev)}
           >
-            <span className="flex flex-col items-center gap-[5px]">
-              <span
-                className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
-                  open ? "translate-y-[7px] rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-200 ${
-                  open ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
-                  open ? "-translate-y-[7px] -rotate-45" : ""
-                }`}
-              />
-            </span>
+            <span />
+            <span />
+            <span />
           </button>
         </div>
       </nav>
 
-      {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-ink/20 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        onClick={() => setOpen(false)}
+        className={`nav-overlay ${isOpen ? "is-open" : ""}`}
+        onClick={() => setIsOpen(false)}
         aria-hidden="true"
       />
 
-      {/* Mobile panel */}
       <div
-        ref={menuRef}
+        ref={drawerRef}
+        className={`nav-drawer ${isOpen ? "is-open" : ""}`}
         role="dialog"
-        aria-label="Mobile navigation menu"
         aria-modal="true"
-        className={`fixed top-0 right-0 z-50 flex h-full w-[280px] flex-col bg-surface shadow-2xl transition-transform duration-300 ease-[cubic-bezier(.22,1,.36,1)] md:hidden ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        aria-label="Mobile menu"
       >
-        <div className="flex items-center justify-between border-b border-ink/5 px-5 py-4">
+        <div className="nav-drawer-header">
           <Link
             href="/"
-            onClick={() => setOpen(false)}
-            className="text-lg font-bold tracking-tight"
+            className="brand-lockup nav-drawer-brand"
+            onClick={() => setIsOpen(false)}
+            aria-label="OpenADHD home"
           >
-            <span className="text-ink">Open</span>
-            <span className="text-brand">ADHD</span>
+            <span className="brand-open">Open</span>
+            <strong className="brand-adhd">ADHD</strong>
           </Link>
           <button
             type="button"
-            onClick={() => setOpen(false)}
+            className="nav-drawer-close"
+            onClick={() => setIsOpen(false)}
             aria-label="Close menu"
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted hover:bg-brand/5 hover:text-ink"
           >
-            <svg viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
-              <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M2 2L16 16M16 2L2 16"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
         </div>
-        <ul className="flex flex-col gap-1 px-4 py-5">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
+        <ul className="nav-drawer-links">
+          {navLinks.map((link) => (
+            <li key={link.href}>
               <Link
-                href={href}
-                onClick={() => setOpen(false)}
-                className={`flex items-center rounded-xl px-4 py-3 text-[0.95rem] font-medium transition-all duration-200 ${
-                  active(href)
-                    ? "bg-brand/8 text-brand font-semibold"
-                    : "text-ink-muted hover:bg-ink/3 hover:text-ink"
-                }`}
+                href={link.href}
+                className={`nav-drawer-link ${isActive(link.href) ? "is-active" : ""}`}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                onClick={() => setIsOpen(false)}
               >
-                {label}
+                <span className="nav-drawer-link-text">{link.label}</span>
+                <span className="nav-drawer-link-arrow" aria-hidden="true">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    focusable="false"
+                  >
+                    <path
+                      d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
               </Link>
             </li>
           ))}
         </ul>
+        <Link
+          className="btn btn-primary nav-drawer-cta"
+          href="/tools/bad-day-mode"
+          onClick={() => setIsOpen(false)}
+        >
+          <span aria-hidden="true" style={{ fontSize: "0.9em" }}>&#9888;</span>
+          Open Bad Day Mode
+        </Link>
       </div>
+
+      <style>{`
+        .brand-lockup {
+          display: inline-flex;
+          align-items: baseline;
+          gap: 0;
+          text-decoration: none;
+          font-size: 1.35rem;
+          font-family: var(--font-serif), Georgia, serif;
+          letter-spacing: -0.01em;
+        }
+
+        .brand-open {
+          display: inline-flex;
+          align-items: center;
+          background: var(--brand);
+          color: #fff;
+          font-weight: 800;
+          font-size: 0.72em;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          padding: 0.15em 0.5em 0.18em;
+          border-radius: 6px 6px 6px 2px;
+          margin-right: 0.28em;
+          line-height: 1.4;
+          vertical-align: baseline;
+          position: relative;
+          top: -0.05em;
+        }
+
+        .brand-adhd {
+          color: var(--text-strong);
+          font-weight: 800;
+          font-style: normal;
+          letter-spacing: -0.02em;
+        }
+
+        .nav-drawer-brand {
+          font-size: 1.2rem;
+        }
+
+        .nav-link {
+          position: relative;
+          text-decoration: none;
+          padding: 0.45rem 0.62rem;
+          border-radius: 0.5rem;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--text-muted);
+          transition: color 160ms ease, background 160ms ease;
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0;
+        }
+
+        .nav-link:hover {
+          color: var(--text);
+          background: color-mix(in oklab, var(--surface-alt) 84%, transparent);
+        }
+
+        .nav-link.is-active {
+          color: var(--brand);
+          background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+          font-weight: 700;
+        }
+
+        .nav-link-dot {
+          display: block;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: var(--brand);
+          margin-top: 2px;
+          position: absolute;
+          bottom: 4px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .btn-bad-day {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.4rem;
+          border-radius: 0.72rem;
+          border: 1.5px solid color-mix(in oklab, var(--brand) 45%, transparent);
+          padding: 0.52rem 0.82rem;
+          font-weight: 700;
+          font-size: 0.87rem;
+          text-decoration: none;
+          cursor: pointer;
+          background: color-mix(in oklab, var(--brand) 12%, var(--surface));
+          color: var(--brand-dark);
+          transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+        }
+
+        .btn-bad-day:hover {
+          background: color-mix(in oklab, var(--brand) 20%, var(--surface));
+          border-color: color-mix(in oklab, var(--brand) 62%, transparent);
+          color: var(--brand-dark);
+          transform: translateY(-1px);
+        }
+
+        .nav-drawer-close {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 0.6rem;
+          border: 1px solid var(--line);
+          background: var(--surface-alt);
+          color: var(--text-muted);
+          cursor: pointer;
+          transition: background 150ms, color 150ms;
+          flex-shrink: 0;
+        }
+
+        .nav-drawer-close:hover {
+          background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+          color: var(--brand);
+          border-color: color-mix(in oklab, var(--brand) 28%, var(--line));
+        }
+
+        .nav-drawer-link {
+          text-decoration: none;
+          border-radius: 0.65rem;
+          padding: 0.7rem 0.75rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+          color: var(--text-muted);
+          font-weight: 600;
+          font-size: 0.97rem;
+          transition: background 150ms, color 150ms;
+        }
+
+        .nav-drawer-link-text {
+          flex: 1;
+        }
+
+        .nav-drawer-link-arrow {
+          color: var(--text-faint);
+          opacity: 0;
+          transform: translateX(-4px);
+          transition: opacity 150ms, transform 150ms, color 150ms;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .nav-drawer-link:hover .nav-drawer-link-arrow,
+        .nav-drawer-link.is-active .nav-drawer-link-arrow {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .nav-drawer-link.is-active {
+          background: color-mix(in oklab, var(--brand) 12%, var(--surface));
+          color: var(--brand-dark);
+          font-weight: 700;
+        }
+
+        .nav-drawer-link.is-active .nav-drawer-link-arrow {
+          color: var(--brand);
+        }
+
+        .nav-drawer-link:hover {
+          background: var(--surface-alt);
+          color: var(--text);
+        }
+
+        .nav-drawer-link:hover .nav-drawer-link-arrow {
+          color: var(--text-muted);
+        }
+
+        .site-alert {
+          text-align: center;
+          font-size: 0.76rem;
+          font-weight: 700;
+          letter-spacing: 0.02em;
+          background: color-mix(in oklab, var(--danger) 10%, var(--surface));
+          border-bottom: 1px solid color-mix(in oklab, var(--danger) 20%, var(--line));
+          padding: 0.32rem 1rem;
+          color: var(--text-muted);
+        }
+
+        @media (max-width: 1120px) {
+          .btn-bad-day {
+            display: none;
+          }
+        }
+      `}</style>
     </header>
   );
 }

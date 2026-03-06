@@ -1,0 +1,30 @@
+2-COLUMN TASK SYSTEM
+
+Column A: MUST DO (max 3)
+- Non-negotiables with deadlines or health/safety impact.
+
+Column B: COULD DO
+- Useful but optional tasks if energy permits.
+
+Today
+MUST DO
+1)
+2)
+3)
+
+COULD DO
+1)
+2)
+3)
+4)
+5)
+
+START SCRIPT
+- First action:
+- Timer length:
+- Accountability ping to:
+
+END-OF-DAY REVIEW
+- What got done:
+- What moved to tomorrow:
+- What can be dropped:

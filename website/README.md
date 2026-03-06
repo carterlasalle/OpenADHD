@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OpenADHD Website
 
-## Getting Started
+OpenADHD is a free-first ADHD support hub built with Next.js.
 
-First, run the development server:
+## What Is Included
+
+- Start Here 60-second chooser (`/start-here`)
+- Interactive toolkit (`/tools/*`) with task, time, routine, script, school, and planner generators
+- Problem-organized deep guide library (`/library` and `/library/[slug]`)
+- Diagnosis and care pathways (`/care` and path subpages)
+- Audience portals (`/students`, `/adults`, `/parents-partners`, `/teachers`, `/managers`)
+- Script library (`/scripts`)
+- Public-good transparency and contribution pages (`/about`, `/about/contribute`)
+- Printable templates (`/public/templates/*`)
+- Long-form downloadable guides (`/public/guides/*`)
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) (headings) and [Nunito](https://fonts.google.com/specimen/Nunito) (body text).
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-## Learn More
+## Regenerate PDF Guides
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+node scripts/generate-guides.mjs
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This writes fresh PDF + TXT guide assets to `public/guides`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/resources` redirects to `/library`.
+- `/diagnosis` redirects to `/care`.
+- Content is educational and not medical advice.

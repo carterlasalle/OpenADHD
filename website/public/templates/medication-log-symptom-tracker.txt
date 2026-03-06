@@ -1,0 +1,35 @@
+MEDICATION LOG + SYMPTOM TRACKER
+
+Date:
+Medication + dose:
+Time taken:
+Sleep last night (hours/quality):
+Caffeine intake:
+
+MORNING
+- Focus:
+- Mood:
+- Energy:
+- Side effects:
+
+AFTERNOON
+- Focus:
+- Mood:
+- Energy:
+- Side effects:
+
+EVENING
+- Focus:
+- Mood:
+- Energy:
+- Side effects:
+
+FUNCTIONAL NOTES
+- Work/school task completion:
+- Emotional regulation:
+- Appetite/hydration:
+
+QUESTIONS FOR PRESCRIBER
+1)
+2)
+3)

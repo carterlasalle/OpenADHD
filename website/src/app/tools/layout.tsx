@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tools & Strategies — OpenADHD",
+  title: "Tools",
   description:
-    "Practical tools and strategies for managing ADHD. From time management to study systems, find what works for you.",
+    "Interactive ADHD tools for task breakdown, time estimates, routines, scripts, study support, and buffered planning.",
 };
 
 export default function ToolsLayout({
